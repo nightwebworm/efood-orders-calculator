@@ -31,3 +31,22 @@ myLoop().then(()=> {
     console.log("Total Price: ", sum)
 })
 
+
+/* let head = document.querySelector("head")
+let style = document.createElement("style")
+head.appendChild(style)
+style.textContent = ` .popup{background-color: green;}` */
+
+let popup = document.createElement("div");
+popup.style.width = "100px";
+popup.style.height = "100px";
+popup.style.backgroundColor = "grey"
+popup.style.borderRadius = "5px"
+popup.style.boxShadow = "2px 2px 4px 4px grey"
+popup.style.position = "fixed";
+popup.style.top = "50%";
+popup.style.left = "50%";
+popup.style.marginLeft = "-50px";
+popup.style.marginTop = "-50px";
+popup.style.zIndex = "100";
+document.querySelector("body").appendChild(popup);
