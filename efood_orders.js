@@ -31,34 +31,3 @@ myLoop().then(()=> {
     console.log("Total Price: ", sum)
 })
 
-function tamed(){
-    return new Promise( (resolve)=>{
-        setTimeout( ()=> {
-            console.log("done")
-            resolve()
-        }, 2000)    
-    })
-}
-
-tamed().then( ()=>{
-    console.log("then done!")
-} )
-
-
-function one(){
-    return new Promise( (resolve)=> {
-        two().then( ()=>{
-            resolve()
-        } )
-    } ) 
-}
-
-function two(){
-    return new  Promise(resolve=>{
-        setTimeout(()=>{
-            resolve()
-        }, 2000)
-    })
-}
-
-one().then( ()=>{console.log("Test")} )
