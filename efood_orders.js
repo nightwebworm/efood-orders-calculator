@@ -1,27 +1,69 @@
 /* In order to function, you must be connected to efood */
 
 // Create the popup 
+let style_str = `
+.popup {
+    width : 200px;
+    height : 100px;
+    border-radius : 3px;
+    box-shadow : 2px 2px 4px 4px grey;
+    position :fixed;
+    top : 10%;
+    left : 50%;
+    margin-left : -100px;
+    margin-top : -50px;
+    z-index : 100;  
+    text-align: center;
+    padding: 0px 0px;
+    background: white;
+} 
+
+.bar{
+    height: 20px;
+    border-radius : 3px 3px 0px 0px;
+    background: rgb(238, 238, 238);
+}
+
+.close{
+    width: 20px;
+    height: inherit;
+    background: rgb(247, 148, 148);
+    z-index: 10;
+    float: right;
+    border-radius : 0px 3px 0px 0px;
+}
+
+.close:hover{
+    background: red;
+}
+
+.content{
+    padding: 5px 5px;
+}   
+} 
+`
+
+let head = document.querySelector("head");
+let style = document.createElement("style");
+head.appendChild(style)
+style.innerHTML= style_str;
+
 let popup = document.createElement("div");
-popup.style.width = "100px";
-popup.style.height = "100px";
-popup.style.backgroundColor = "grey"
-popup.style.borderRadius = "5px"
-popup.style.boxShadow = "2px 2px 4px 4px grey"
-popup.style.position = "fixed";
-popup.style.top = "50%";
-popup.style.left = "50%";
-popup.style.marginLeft = "-50px";
-popup.style.marginTop = "-50px";
-popup.style.zIndex = "100";
-document.querySelector("body").appendChild(popup);
+popup.innerHTML = `
+<div class="bar">
+        Efood Bookmarklet
+            <div class="close">✖</div>
 
-popup.innerHTML = " Your Total Price: <br> <i> <b> Loading.. </b> </i> <br> click to close  "
-popup.style.textAlign = "center";
-popup.style.padding = "10px 4px"
+        </div>
+        <div class="content">
+            <b><i>Loading.. </i></b>
+        </div>
+        `
+console.log(popup)
+popup.classList.add("popup")
+document.querySelector("body").appendChild(popup)
 
-popup.addEventListener( 'click', ()=>{
-    document.querySelector("body").removeChild(popup)
-})
+
 
 
 // Open all the meals 
@@ -53,8 +95,13 @@ myLoop().then(()=> {
     meals.forEach( (meal)=>  
     { sum+= parseFloat(meal.textContent.replace(",",".").replace("€","") )   })
     console.log("Total Price: ", sum)
-    popup.innerHTML = ` Your Total Price: <br> <i> <b> ${sum.toFixed(2)} </b> </i> <br> click to close `
+    popup.querySelector(".content").innerHTML = ` Your Total Price: <br> <i> <b> ${sum.toFixed(2)} </b> </i> <br> click to close `
 
 })
 
 
+let close_btn = document.querySelector(".close");
+close_btn.addEventListener("click", ()=>{
+    //popup.remove()
+    console.log("removes: ", popup)
+})
