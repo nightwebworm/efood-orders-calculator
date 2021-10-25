@@ -102,6 +102,6 @@ myLoop().then(()=> {
 
 let close_btn = document.querySelector(".close");
 close_btn.addEventListener("click", ()=>{
-    //popup.remove()
+    popup.remove()
     console.log("removes: ", popup)
 })
